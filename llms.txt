@@ -1,0 +1,113 @@
+# Cornerstone Jobs Scraper & API - All CSOD Career Sites, Remote
+
+> Cornerstone jobs scraper and API for every company on csod.com, searched live by job title, location, remote and posting date, newest first.
+
+## Summary
+
+Cornerstone Jobs Search is an Apify actor that searches every company's career site on Cornerstone OnDemand (csod.com) at once and returns one row per job, newest first: title, company, location, remote flag, posting date, closing date and link. It covers 1,110 career sites of 605 employers and 61,000+ open jobs (2026-10-30), including McDonald's, Henkel, Turner Construction, STRABAG, Linde and Kohler. It reads Cornerstone live at run time with no login and no API key, and 47% of these jobs sit on career sites closed to search engines, so a site:csod.com Google search does not find them.
+
+Store: https://apify.com/anshumanatrey/cornerstone-jobs-search
+Source: https://github.com/AnshumanAtrey/cornerstone-jobs-search
+
+## Key features
+
+- Every career site at once, with no list of companies needed: 1,110 sites in about a minute.
+- One keyword is enough; an empty form returns the newest jobs of every kind.
+- Newest first, read live, not from a stored copy.
+- Place filter by city, state, country or region: Germany, EMEA, LatAm, Worldwide.
+- Reads a pasted Google dork such as site:newcold.csod.com intext:engineer.
+- Job link check: each pasted link comes back open, closed or not found.
+
+## Input keys
+
+- Job titles to find (searchTerms): one per line; a job matches when its title has every word.
+- Where the job is (location): city, state, country or region.
+- Remote or onsite (workType): remote, hybrid or onsite, read from the title and location.
+- Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
+- Number of jobs (maxJobs): 100 by default, 0 for every match.
+- Full details (includeDetails): adds the description, exact time, reference, apply link and address.
+- Leave out words (excludeTerms): drops jobs whose title has these words.
+- Match descriptions (searchDescriptions): finds your words in the description too.
+- Only these companies (companies): a name, the name in the address, or a career-site link.
+- Job links to check (jobUrls): checks links instead of searching.
+
+## Pricing
+
+PAY_PER_EVENT model, platform usage included, no start fee:
+
+- Job: $0.002 per saved job, and per checked link that is closed or not found
+- Job with details: $0.003 per saved job with full details on
+
+On paid Apify plans these are 10% less on Scale ($0.0018 and $0.0027) and 20% less on Business and above ($0.0016 and $0.0024).
+
+Typical costs (Free and Starter price):
+
+- 100 newest jobs: $0.20
+- 100 jobs with full details: $0.30
+- 1,000 jobs: $2.00
+
+## When to use
+
+- The user wants jobs from employers on Cornerstone OnDemand, or a csod.com jobs API.
+- The user wants jobs that a Google site: search misses.
+- The user wants a daily feed of new jobs by title, country or region across many large employers.
+- The user wants to check whether Cornerstone job links are still open.
+
+## When NOT to use
+
+- The user needs salary, job type or department: Cornerstone does not publish them.
+- The user needs jobs from other platforms in one run: use a multi-ATS actor, or ashby-jobs-search for Ashby.
+- The user needs jobs from a company that is not on Cornerstone.
+
+## Sample input
+
+```json
+{
+  "searchTerms": ["software engineer"],
+  "location": ["Germany", "United States"],
+  "postedWithin": "7 days",
+  "maxJobs": 100
+}
+```
+
+## Sample output (one record)
+
+```json
+{
+  "title": "Senior Project Engineer",
+  "company": "NewCold",
+  "location": "Breda, NL",
+  "otherLocations": [],
+  "workType": null,
+  "postedAt": "2026-07-03",
+  "expiresAt": null,
+  "jobUrl": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold",
+  "applyUrl": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold",
+  "status": "open",
+  "platform": "cornerstone",
+  "companySlug": "newcold/5",
+  "jobId": "954",
+  "checkedAt": "2026-10-30T11:57:07+00:00"
+}
+```
+
+## Differentiators vs alternatives
+
+- vs gefese/cornerstone-jobs-scraper ($0.0015 per job, needs the career-site links): cheaper per job; this actor needs no links and searches every career site at once.
+- vs fantastic-jobs/career-site-job-listing-api ($0.012 per job, $0.01 start): many more platforms from a stored database; this actor costs less per job and reads Cornerstone live.
+- vs memo23/career-site-ats-jobs-api ($0.004 per job, $0.03 start): many more platforms; this actor costs less per job and has no start fee.
+
+## Documentation
+
+- Apify Store: https://apify.com/anshumanatrey/cornerstone-jobs-search
+- GitHub repo: https://github.com/AnshumanAtrey/cornerstone-jobs-search
+- Issues / feedback: GitHub Issues on the above repo
+- License: MIT
+
+## Maintainer
+
+Anshuman Atrey (https://github.com/AnshumanAtrey), who publishes a portfolio of data and OSINT actors on Apify Store. Feature requests and bugs: LinkedIn (https://linkedin.com/in/anshumanatrey, fastest), GitHub issues, or atrey.dev.
+
+## Last updated
+
+2026-10-30

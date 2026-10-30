@@ -1,0 +1,160 @@
+{
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build.",
+    "options": {
+        "build": "latest",
+        "memoryMbytes": 2048,
+        "timeoutSecs": 1800
+    },
+    "tasks": [
+        {
+            "name": "cornerstone-jobs-last-24-hours",
+            "title": "Find every Cornerstone job posted in the last 24 hours",
+            "description": "Get every job that 605 employers on Cornerstone OnDemand posted in the last day, newest first, with the company, location and link. Schedule it daily for a fresh feed of jobs, many of them closed to Google.",
+            "input": {
+                "postedWithin": "24 hours",
+                "maxJobs": 100
+            },
+            "seoTitle": "New Cornerstone Jobs in the Last 24 Hours",
+            "seoDescription": "Every job posted on Cornerstone OnDemand career sites in the last day, newest first, with company, location and link. Run it daily for a fresh job feed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "remote-jobs-on-cornerstone",
+            "title": "Find remote jobs on Cornerstone career sites",
+            "description": "Get the newest remote jobs from every employer on Cornerstone OnDemand, with the company, location, posting date and link. Remote is read from the job's title and location.",
+            "input": {
+                "workType": [
+                    "remote"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Remote Jobs on Cornerstone Career Sites",
+            "seoDescription": "Search every Cornerstone OnDemand career site for remote jobs at once, newest first, with company, location, posting date and link. No login needed.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "software-engineer-jobs-cornerstone",
+            "title": "Find software engineer jobs on Cornerstone career sites",
+            "description": "Get the newest software engineer jobs from every employer on Cornerstone OnDemand, including the career sites closed to Google, with the company, location, posting date and link.",
+            "input": {
+                "searchTerms": [
+                    "software engineer"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Software Engineer Jobs on Cornerstone",
+            "seoDescription": "Search every Cornerstone OnDemand career site for software engineer jobs, newest first, including sites closed to Google. Company, place, date, link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "nurse-jobs-usa-cornerstone",
+            "title": "Find nurse jobs in the United States on Cornerstone",
+            "description": "Get the newest nurse jobs in the United States from the hospitals and health systems on Cornerstone OnDemand, with the employer, city, posting date and link.",
+            "input": {
+                "searchTerms": [
+                    "nurse"
+                ],
+                "location": [
+                    "United States"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Nurse Jobs in the USA on Cornerstone",
+            "seoDescription": "Search the hospitals and health systems on Cornerstone OnDemand for nurse jobs in the United States, newest first, with employer, city, date and link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "project-manager-jobs-germany-cornerstone",
+            "title": "Find project manager jobs in Germany on Cornerstone",
+            "description": "Get the newest project manager jobs in Germany from every employer on Cornerstone OnDemand, with the company, city, posting date and link. Titles come in the language the company writes them.",
+            "input": {
+                "searchTerms": [
+                    "project manager"
+                ],
+                "location": [
+                    "Germany"
+                ],
+                "maxJobs": 100
+            },
+            "seoTitle": "Project Manager Jobs in Germany on Cornerstone",
+            "seoDescription": "Search every Cornerstone OnDemand career site for project manager jobs in Germany, newest first, with company, city, posting date and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "sales-jobs-europe-last-7-days",
+            "title": "Find sales jobs in Europe posted in the last 7 days",
+            "description": "Get the sales jobs that employers on Cornerstone OnDemand posted across Europe in the last week, newest first, with the company, city and link. A region finds every country in it.",
+            "input": {
+                "searchTerms": [
+                    "sales"
+                ],
+                "location": [
+                    "Europe"
+                ],
+                "postedWithin": "7 days",
+                "maxJobs": 100
+            },
+            "seoTitle": "Sales Jobs in Europe on Cornerstone, Last 7 Days",
+            "seoDescription": "Sales jobs posted across Europe in the last 7 days on Cornerstone OnDemand career sites, newest first, with company, city, posting date and job link.",
+            "inputSchemaFields": [
+                "searchTerms",
+                "location",
+                "workType",
+                "postedWithin",
+                "maxJobs"
+            ],
+            "datasetView": "jobs"
+        },
+        {
+            "name": "check-cornerstone-job-links",
+            "title": "Check whether Cornerstone job links are still open",
+            "description": "Paste Cornerstone job links and each comes back open, closed or not found, with the job's details when it is open. Handy for cleaning dead links out of a job board or a spreadsheet.",
+            "input": {
+                "jobUrls": [
+                    "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold"
+                ]
+            },
+            "seoTitle": "Check if Cornerstone Job Links Are Still Open",
+            "seoDescription": "Paste Cornerstone job links and see which are open, closed or gone. Clean dead links out of a job board or a spreadsheet, with no login or API key.",
+            "inputSchemaFields": [
+                "jobUrls"
+            ],
+            "datasetView": "jobs"
+        }
+    ]
+}

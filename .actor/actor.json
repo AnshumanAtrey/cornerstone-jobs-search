@@ -31,7 +31,7 @@
                         ],
                         "title": "Job title (title)",
                         "description": "The job title as the company wrote it on Cornerstone.",
-                        "example": "MFCS Engineer"
+                        "example": "Senior Project Engineer"
                     },
                     "company": {
                         "type": [
@@ -40,7 +40,7 @@
                         ],
                         "title": "Company name (company)",
                         "description": "The company. Cornerstone publishes only the name in the address, so names are written by hand for the big employers and read from the address for the rest.",
-                        "example": "Henkel"
+                        "example": "NewCold"
                     },
                     "location": {
                         "type": [
@@ -49,7 +49,7 @@
                         ],
                         "title": "Main location (location)",
                         "description": "The job's main place: city, state and country code as Cornerstone stores them.",
-                        "example": "Herentals, BE"
+                        "example": "Breda, NL"
                     },
                     "otherLocations": {
                         "type": [
@@ -59,8 +59,7 @@
                         "title": "Other locations (otherLocations)",
                         "description": "Every other place the job is posted for.",
                         "example": [
-                            "Remote (Canada)",
-                            "Miami, FL"
+                            "Shanghai, SHANGHAI, CN"
                         ],
                         "items": {
                             "type": "string"
@@ -72,8 +71,8 @@
                             "null"
                         ],
                         "title": "Remote or onsite (workType)",
-                        "description": "remote, hybrid or onsite, from the job's Cornerstone work type (a job without one is remote when its location says Remote). Empty when Cornerstone has none.",
-                        "example": "hybrid"
+                        "description": "Remote or hybrid when the title or location says so; empty when neither does. Cornerstone has no remote field.",
+                        "example": "remote"
                     },
                     "postedAt": {
                         "type": [
@@ -82,7 +81,7 @@
                         ],
                         "title": "Posted on (postedAt)",
                         "description": "When the job was posted: a date, or the exact time with details on.",
-                        "example": "2026-10-29"
+                        "example": "2026-07-03"
                     },
                     "jobUrl": {
                         "type": [
@@ -91,7 +90,7 @@
                         ],
                         "title": "Job link (jobUrl)",
                         "description": "The job's page on the company's Cornerstone board.",
-                        "example": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/3110?c=newcold"
+                        "example": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold"
                     },
                     "applyUrl": {
                         "type": [
@@ -100,7 +99,7 @@
                         ],
                         "title": "Apply link (applyUrl)",
                         "description": "The link to apply. With details on, the company's own apply link when it has one.",
-                        "example": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/3110?c=newcold"
+                        "example": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold"
                     },
                     "status": {
                         "type": "string",
@@ -113,9 +112,9 @@
                             "string",
                             "null"
                         ],
-                        "title": "Cornerstone board name (companySlug)",
+                        "title": "Career site (companySlug)",
                         "description": "The career site: the name in its address and the site number, as in henkel/1 for henkel.csod.com, site 1.",
-                        "example": "henkel/1"
+                        "example": "newcold/5"
                     },
                     "jobId": {
                         "type": [
@@ -124,13 +123,13 @@
                         ],
                         "title": "Job ID (jobId)",
                         "description": "Cornerstone's requisition number of the job.",
-                        "example": "3110"
+                        "example": "954"
                     },
                     "checkedAt": {
                         "type": "string",
                         "title": "Checked at (checkedAt)",
                         "description": "When the run read the boards, in UTC.",
-                        "example": "2026-09-30T17:18:12+00:00"
+                        "example": "2026-10-30T11:57:07+00:00"
                     },
                     "description": {
                         "type": [
@@ -138,8 +137,8 @@
                             "null"
                         ],
                         "title": "Job description (description)",
-                        "description": "With details on: the full job description as plain text.",
-                        "example": "About Ramp. Ramp is building the smart infrastructure for finance teams..."
+                        "description": "The job description as plain text, with details on.",
+                        "example": "You will configure, program, test and commission the material flow software of an automated warehouse."
                     },
                     "descriptionHtml": {
                         "type": [
@@ -147,8 +146,8 @@
                             "null"
                         ],
                         "title": "Description as HTML (descriptionHtml)",
-                        "description": "With details on: the full job description as the company formatted it, in HTML.",
-                        "example": "<h1><strong>About Ramp</strong></h1><p>Ramp is building...</p>"
+                        "description": "The job description as the company wrote it in HTML, with details on.",
+                        "example": "<p>You will configure, program, test and commission the material flow software of an automated warehouse.</p>"
                     },
                     "city": {
                         "type": [
@@ -156,8 +155,8 @@
                             "null"
                         ],
                         "title": "Job city (city)",
-                        "description": "With details on: the city of the job's main address.",
-                        "example": "New York City"
+                        "description": "The city of the job's main place, with details on.",
+                        "example": "Herentals"
                     },
                     "region": {
                         "type": [
@@ -165,8 +164,8 @@
                             "null"
                         ],
                         "title": "State or region (region)",
-                        "description": "With details on: the state or region of the job's main address.",
-                        "example": "NY"
+                        "description": "The state or region of the job's main place, with details on.",
+                        "example": "PA"
                     },
                     "country": {
                         "type": [
@@ -174,8 +173,8 @@
                             "null"
                         ],
                         "title": "Job country (country)",
-                        "description": "With details on: the country of the job's main address, as the company wrote it.",
-                        "example": "USA"
+                        "description": "The country of the job's main place as Cornerstone stores it, with details on.",
+                        "example": "BE"
                     },
                     "countryCode": {
                         "type": [
@@ -183,8 +182,8 @@
                             "null"
                         ],
                         "title": "Country code (countryCode)",
-                        "description": "With details on: the two-letter code of that country.",
-                        "example": "US"
+                        "description": "The two-letter country code, with details on.",
+                        "example": "BE"
                     },
                     "expiresAt": {
                         "type": [
@@ -315,7 +314,7 @@
                                 "format": "link"
                             },
                             "companySlug": {
-                                "label": "Cornerstone board name (companySlug)",
+                                "label": "Career site (companySlug)",
                                 "format": "text"
                             },
                             "jobId": {

@@ -11,7 +11,7 @@
     "isPublic": false,
     "defaultRunOptions": {
         "build": "latest",
-        "memoryMbytes": 1024,
+        "memoryMbytes": 2048,
         "timeoutSecs": 1800
     },
     "pricing": {
@@ -76,5 +76,7 @@
                 }
             }
         ]
-    }
+    },
+    "actorId": "mhG1RZXe1uHyweFZ2",
+    "defaultRunOptions$comment": "2 GB: a pass over every site is CPU-bound, so time halves with memory at the same cost (2026-10-30, 100 newest jobs: 512 MB 283 s $0.0079, 1 GB 143 s $0.0079, 2 GB 69 s $0.0076 of compute; peak 123 MB)."
 }
