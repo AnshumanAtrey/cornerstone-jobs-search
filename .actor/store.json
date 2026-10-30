@@ -1,0 +1,80 @@
+{
+    "$comment": "Listing metadata, applied by scripts/store-metadata.mjs in CI (manager/rules/SEO.md). actorId is added after the first deploy.",
+    "seoTitle": "Cornerstone Jobs Scraper - Every CSOD Career Site",
+    "seoDescription": "Search every Cornerstone OnDemand career site at once: job titles, locations, remote work and posting dates. Newest first, read live, no login.",
+    "exampleRunInput": {
+        "searchTerms": [
+            "software engineer"
+        ]
+    },
+    "actorPermissionLevel": "LIMITED_PERMISSIONS",
+    "isPublic": false,
+    "defaultRunOptions": {
+        "build": "latest",
+        "memoryMbytes": 1024,
+        "timeoutSecs": 1800
+    },
+    "pricing": {
+        "$comment": "2026-10-30. Rule: rules/SEO.md section 16. Anchors for one Cornerstone job: gefese/cornerstone-jobs-scraper $0.0015 (1 user, one site at a time, launched 2026-10-03), multi-ATS actors that include Cornerstone $0.004 (memo23, jobo.world) to $0.012 (fantastic-jobs). No start fee: a run's cost is fixed by the sites read. Start high while private: a cut is free, a raise costs a month. Gentle ladder per the owner's decision of 2026-10-29.",
+        "apply": true,
+        "pricingInfos": [
+            {
+                "pricingModel": "PAY_PER_EVENT",
+                "reasonForChange": "First pricing",
+                "pricingPerEvent": {
+                    "actorChargeEvents": {
+                        "job": {
+                            "eventTitle": "Job",
+                            "eventDescription": "One saved job row: title, company, locations, work type, posting date, job link. Also one checked job link that is closed or not found.",
+                            "isPrimaryEvent": true,
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.002
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.002
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.0018
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.0016
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.0016
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.0016
+                                }
+                            }
+                        },
+                        "job-details": {
+                            "eventTitle": "Job with details",
+                            "eventDescription": "One saved job row with full details on: everything in a Job row plus the description as text and HTML, exact posting time, reference, apply link, city, region and country.",
+                            "eventTieredPricingUsd": {
+                                "FREE": {
+                                    "tieredEventPriceUsd": 0.003
+                                },
+                                "BRONZE": {
+                                    "tieredEventPriceUsd": 0.003
+                                },
+                                "SILVER": {
+                                    "tieredEventPriceUsd": 0.0027
+                                },
+                                "GOLD": {
+                                    "tieredEventPriceUsd": 0.0024
+                                },
+                                "PLATINUM": {
+                                    "tieredEventPriceUsd": 0.0024
+                                },
+                                "DIAMOND": {
+                                    "tieredEventPriceUsd": 0.0024
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        ]
+    }
+}

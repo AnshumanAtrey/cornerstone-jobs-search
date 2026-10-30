@@ -1,0 +1,347 @@
+{
+    "actorSpecification": 1,
+    "name": "cornerstone-jobs-search",
+    "title": "Cornerstone Jobs Scraper & API - All CSOD Career Sites, Remote",
+    "description": "Cornerstone jobs scraper and API for every company on csod.com, searched live by job title, location, remote and posting date, newest first. 605 employers, 61,000+ open jobs, nearly half closed to Google. The site:csod.com dork done at the source: full descriptions, dead-link checks.",
+    "version": "1.0",
+    "buildTag": "latest",
+    "categories": [
+        "JOBS",
+        "LEAD_GENERATION",
+        "OPEN_SOURCE"
+    ],
+    "input": "./INPUT_SCHEMA.json",
+    "output": "./output_schema.json",
+    "dockerfile": "../Dockerfile",
+    "readme": "../README.md",
+    "minMemoryMbytes": 512,
+    "maxMemoryMbytes": 4096,
+    "storages": {
+        "dataset": {
+            "actorSpecification": 1,
+            "title": "Cornerstone jobs",
+            "description": "One row per job, newest first: title, company, locations, work type, job type, pay, posting date and links; with details on, also the description, salary numbers and address. The run summary is the OUTPUT record, not a row.",
+            "fields": {
+                "type": "object",
+                "properties": {
+                    "title": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job title (title)",
+                        "description": "The job title as the company wrote it on Cornerstone.",
+                        "example": "MFCS Engineer"
+                    },
+                    "company": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company name (company)",
+                        "description": "The company. Cornerstone publishes only the name in the address, so names are written by hand for the big employers and read from the address for the rest.",
+                        "example": "Henkel"
+                    },
+                    "location": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Main location (location)",
+                        "description": "The job's main place: city, state and country code as Cornerstone stores them.",
+                        "example": "Herentals, BE"
+                    },
+                    "otherLocations": {
+                        "type": [
+                            "array",
+                            "null"
+                        ],
+                        "title": "Other locations (otherLocations)",
+                        "description": "Every other place the job is posted for.",
+                        "example": [
+                            "Remote (Canada)",
+                            "Miami, FL"
+                        ],
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "workType": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Remote or onsite (workType)",
+                        "description": "remote, hybrid or onsite, from the job's Cornerstone work type (a job without one is remote when its location says Remote). Empty when Cornerstone has none.",
+                        "example": "hybrid"
+                    },
+                    "postedAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Posted on (postedAt)",
+                        "description": "When the job was posted: a date, or the exact time with details on.",
+                        "example": "2026-10-29"
+                    },
+                    "jobUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job link (jobUrl)",
+                        "description": "The job's page on the company's Cornerstone board.",
+                        "example": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/3110?c=newcold"
+                    },
+                    "applyUrl": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Apply link (applyUrl)",
+                        "description": "The link to apply. With details on, the company's own apply link when it has one.",
+                        "example": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/3110?c=newcold"
+                    },
+                    "status": {
+                        "type": "string",
+                        "title": "Still open? (status)",
+                        "description": "open for every search result (read live from the board during the run). For a checked link: open, closed (no longer on the board) or not found (no such Cornerstone board).",
+                        "example": "open"
+                    },
+                    "companySlug": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Cornerstone board name (companySlug)",
+                        "description": "The career site: the name in its address and the site number, as in henkel/1 for henkel.csod.com, site 1.",
+                        "example": "henkel/1"
+                    },
+                    "jobId": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job ID (jobId)",
+                        "description": "Cornerstone's requisition number of the job.",
+                        "example": "3110"
+                    },
+                    "checkedAt": {
+                        "type": "string",
+                        "title": "Checked at (checkedAt)",
+                        "description": "When the run read the boards, in UTC.",
+                        "example": "2026-09-30T17:18:12+00:00"
+                    },
+                    "description": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job description (description)",
+                        "description": "With details on: the full job description as plain text.",
+                        "example": "About Ramp. Ramp is building the smart infrastructure for finance teams..."
+                    },
+                    "descriptionHtml": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Description as HTML (descriptionHtml)",
+                        "description": "With details on: the full job description as the company formatted it, in HTML.",
+                        "example": "<h1><strong>About Ramp</strong></h1><p>Ramp is building...</p>"
+                    },
+                    "city": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job city (city)",
+                        "description": "With details on: the city of the job's main address.",
+                        "example": "New York City"
+                    },
+                    "region": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "State or region (region)",
+                        "description": "With details on: the state or region of the job's main address.",
+                        "example": "NY"
+                    },
+                    "country": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Job country (country)",
+                        "description": "With details on: the country of the job's main address, as the company wrote it.",
+                        "example": "USA"
+                    },
+                    "countryCode": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Country code (countryCode)",
+                        "description": "With details on: the two-letter code of that country.",
+                        "example": "US"
+                    },
+                    "expiresAt": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Closes on (expiresAt)",
+                        "description": "The last day of the posting, when the company set one.",
+                        "example": "2026-11-30"
+                    },
+                    "platform": {
+                        "type": "string",
+                        "title": "Job platform (platform)",
+                        "description": "The ATS the job came from: always cornerstone here.",
+                        "example": "cornerstone"
+                    },
+                    "reference": {
+                        "type": [
+                            "string",
+                            "null"
+                        ],
+                        "title": "Company's reference (reference)",
+                        "description": "The company's own reference for the job, with details on.",
+                        "example": "req3110"
+                    }
+                }
+            },
+            "views": {
+                "jobs": {
+                    "title": "Jobs",
+                    "description": "One row per job: what it is, where, remote or not and when it was posted, with its link.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "location",
+                            "workType",
+                            "postedAt",
+                            "jobUrl",
+                            "status"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "location": {
+                                "label": "Main location (location)",
+                                "format": "text"
+                            },
+                            "workType": {
+                                "label": "Remote or onsite (workType)",
+                                "format": "text"
+                            },
+                            "postedAt": {
+                                "label": "Posted on (postedAt)",
+                                "format": "date"
+                            },
+                            "jobUrl": {
+                                "label": "Job link (jobUrl)",
+                                "format": "link"
+                            },
+                            "status": {
+                                "label": "Still open? (status)",
+                                "format": "text"
+                            }
+                        }
+                    }
+                },
+                "details": {
+                    "title": "Details",
+                    "description": "The description, address and every other field of each job.",
+                    "transformation": {
+                        "fields": [
+                            "title",
+                            "company",
+                            "description",
+                            "city",
+                            "region",
+                            "countryCode",
+                            "otherLocations",
+                            "applyUrl",
+                            "companySlug",
+                            "jobId",
+                            "checkedAt"
+                        ]
+                    },
+                    "display": {
+                        "component": "table",
+                        "properties": {
+                            "title": {
+                                "label": "Job title (title)",
+                                "format": "text"
+                            },
+                            "company": {
+                                "label": "Company name (company)",
+                                "format": "text"
+                            },
+                            "description": {
+                                "label": "Job description (description)",
+                                "format": "text"
+                            },
+                            "city": {
+                                "label": "Job city (city)",
+                                "format": "text"
+                            },
+                            "region": {
+                                "label": "State or region (region)",
+                                "format": "text"
+                            },
+                            "countryCode": {
+                                "label": "Country code (countryCode)",
+                                "format": "text"
+                            },
+                            "otherLocations": {
+                                "label": "Other locations (otherLocations)",
+                                "format": "array"
+                            },
+                            "applyUrl": {
+                                "label": "Apply link (applyUrl)",
+                                "format": "link"
+                            },
+                            "companySlug": {
+                                "label": "Cornerstone board name (companySlug)",
+                                "format": "text"
+                            },
+                            "jobId": {
+                                "label": "Job ID (jobId)",
+                                "format": "text"
+                            },
+                            "checkedAt": {
+                                "label": "Checked at (checkedAt)",
+                                "format": "date"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "keyValueStore": {
+            "actorKeyValueStoreSchemaVersion": 1,
+            "title": "Run summary",
+            "description": "The OUTPUT record: how many boards were read and matched, how many jobs matched and were saved, the checked links, the notes about how the input was read and the settings used.",
+            "collections": {
+                "summary": {
+                    "title": "Run summary (OUTPUT)",
+                    "description": "Status, message, counts for the boards and jobs, checked links, notes and settings.",
+                    "key": "OUTPUT"
+                }
+            }
+        }
+    }
+}
