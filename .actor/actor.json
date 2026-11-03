@@ -2,7 +2,7 @@
     "actorSpecification": 1,
     "name": "cornerstone-jobs-search",
     "title": "Cornerstone Jobs Scraper & API - All CSOD Career Sites, Remote",
-    "description": "Cornerstone jobs scraper and API for every company on csod.com, searched live by job title, location, remote and posting date, newest first. 605 employers, 61,000+ open jobs, nearly half closed to Google. The site:csod.com dork done at the source: full descriptions, dead-link checks.",
+    "description": "Cornerstone jobs scraper and API for every company on csod.com, searched live by job title, location, remote and posting date, newest first. Cornerstone OnDemand (CSOD) jobs at 605 employers, 61,000+ open, 47% closed to Google. The site:csod.com dork at the source: descriptions, dead-link checks.",
     "version": "1.0",
     "buildTag": "latest",
     "categories": [

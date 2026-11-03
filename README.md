@@ -2,7 +2,7 @@
 
 Cornerstone jobs scraper and API: search every company's career site on Cornerstone OnDemand (csod.com) at once, live, and get each job's title, company, location, remote flag, posting date, closing date and link, newest first. Turn on full details for the description, the exact posting time, the address and the apply link.
 
-Use it as a CSOD jobs API, a Cornerstone career site scraper or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent, and export JSON, CSV or Excel. It is the `site:csod.com` Google dork done at the source, and it reaches jobs the dork cannot: nearly half of these jobs sit on career sites closed to search engines. Available as an [Apify Actor](https://apify.com/anshumanatrey/cornerstone-jobs-search). $0.002 per job, $0.003 with full details, no start fee, no login, no API key.
+Use it as a Cornerstone jobs API or CSOD jobs API, a Cornerstone career site scraper or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent through MCP, and export JSON, CSV or Excel. It is the `site:csod.com` Google dork done at the source, and it reaches jobs the dork cannot: nearly half of these jobs sit on career sites closed to search engines. Available as an [Apify Actor](https://apify.com/anshumanatrey/cornerstone-jobs-search). $0.002 per job ($2.00 per 1,000), $0.003 with full details ($3.00 per 1,000), no start fee, no login, no API key.
 
 ## What does it do?
 
@@ -28,14 +28,14 @@ Use it as a CSOD jobs API, a Cornerstone career site scraper or a daily job feed
 
 ## How much does it cost to scrape Cornerstone jobs?
 
-Pay per event. Platform usage is included, and there is no start fee or monthly fee.
+Pay per event: $2.00 per 1,000 jobs, or $3.00 per 1,000 with full details. Platform usage is included, and there is no start fee or monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
 | Job | $0.002 | One saved job, and one checked link that is closed or not found |
 | Job with details | $0.003 | One saved job with full details on |
 
-On paid Apify plans these are 10% less on Scale ($0.0018 and $0.0027) and 20% less on Business and above ($0.0016 and $0.0024).
+On paid Apify plans these are 10% less on Scale ($0.0018 and $0.0027, so $1.80 and $2.70 per 1,000) and 20% less on Business and above ($0.0016 and $0.0024, so $1.60 and $2.40 per 1,000).
 
 | Job (Free and Starter price) | Cost |
 |---|---|
@@ -44,7 +44,7 @@ On paid Apify plans these are 10% less on Scale ($0.0018 and $0.0027) and 20% le
 | 1,000 jobs | $2.00 |
 | 10,000 jobs with full details | $30.00 |
 
-Apify's free $5 monthly credit covers about 2,500 jobs. Number of jobs (`maxJobs`) sets the most a run can cost, and a run stops at its spending limit with a message saying so.
+Apify's free $5 monthly credit covers 2,500 jobs ($5 / $0.002), or 1,666 with full details ($5 / $0.003). Number of jobs (`maxJobs`) sets the most a run can cost, and a run stops at its spending limit with a message saying so.
 
 ## How does the price compare with other Cornerstone scrapers?
 
@@ -124,9 +124,17 @@ Full details add `description`, `descriptionHtml`, `reference`, `city`, `region`
 
 ## How fast is it?
 
-Every career site in 69 seconds at the default 2 GB of memory (run b24SuuFL58CMyduIh, 2026-10-30, 100 newest jobs). A search of named companies takes seconds, and details add a moment per job.
+Every career site in 69 seconds at the default 2 GB of memory (run b24SuuFL58CMyduIh, 2026-10-30, 100 newest jobs). A search of named companies takes seconds, and details add a moment per job. An empty form stops reading once Number of jobs is filled with jobs dated today, because nothing can be newer: the default 100 took 2 seconds of reading (run 6AFdE5CkCJmIJwNXH, build 1.0.5, 2026-10-30).
 
 ## Common questions
+
+### How much does it cost per 1,000 jobs?
+
+$2.00 per 1,000 jobs, or $3.00 per 1,000 with full details, on Apify's Free and Starter plans, with no start fee and platform usage included. Scale pays $1.80 and $2.70 per 1,000, Business and above $1.60 and $2.40. The 100 newest jobs cost $0.20.
+
+### Does it work on the Apify free plan?
+
+Yes. The free plan's $5 monthly credit pays for 2,500 jobs, or 1,666 with full details, and a run costs only its jobs. Number of jobs (`maxJobs`) caps each run, and when the credit or your spending limit runs out, the run stops with the jobs it paid for and says so.
 
 ### Why are these jobs not on Google?
 
@@ -136,24 +144,75 @@ Each company's Cornerstone career site has a setting for search engines. Where i
 
 The Wayback Machine lists every archived page under csod.com, which gave 1,754 career sites; 1,110 still answer. That is the `site:csod.com` idea run on an archive instead of a search engine. To search a company that is not on the list, paste its career-site link into Only these companies.
 
+### How do I search one company?
+
+Type it into Only these companies (`companies`): its name (Henkel), the first words of its name (World Bank finds World Bank Group), the name in its address (henkel from henkel.csod.com) or a career-site link. A name finds every career site of that company, and one company takes seconds. As JSON: `{"companies": ["Henkel"], "searchTerms": ["engineer"]}`.
+
+### How do I check a list of job links?
+
+Paste them into Job links to check (`jobUrls`), one per line. Career-site job links such as `https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold` work, and so do the older `JobDetails.aspx` links. Each comes back open with the job, closed, or not found (no such job or career site). An open link is a normal Job row ($0.002, or $0.003 with full details), a closed or not-found link is one Job ($0.002), and a link Cornerstone does not answer is not charged and is counted in the run message. Three links took 11 seconds (run 2eQyLTWVArakcCSB8, 2026-10-30).
+
+### Which fields come back?
+
+Every row has `title`, `company`, `location`, `otherLocations`, `workType`, `postedAt`, `expiresAt`, `jobUrl`, `applyUrl`, `status`, `platform`, `companySlug`, `jobId` and `checkedAt`. Full details (`includeDetails`) add `description`, `descriptionHtml`, `reference`, `city`, `region`, `country` and `countryCode`, and turn `postedAt` into the exact time. Cornerstone publishes no salary, job type or department, so none comes back. Export as JSON, CSV or Excel.
+
+### How often should I run it?
+
+Once a day gives a fresh feed: schedule it in Apify with Posted in the last (`postedWithin`) set to 24 hours. Cornerstone gives the day a job was posted, not the hour, so 24 hours also keeps the jobs dated the day before, and two daily runs can share a job: keep `jobUrl` as the key to drop repeats.
+
+### Which Cornerstone scraper should I pick?
+
+It depends on what you start from (Store listings and free-plan prices on 2026-10-30):
+
+- **A job title, across every employer on Cornerstone:** this actor, $0.002 per job, read live, including the 47% of jobs on career sites closed to Google.
+- **Career-site links you already have:** gefese/cornerstone-jobs-scraper costs less, $0.0015 per job.
+- **Many ATS in one run:** fantastic-jobs/career-site-job-listing-api ($0.012 per job, $0.01 start, 54 ATS from its own database) or memo23/career-site-ats-jobs-api ($0.004 per job, $0.03 start, 116 ATS).
+- **A free Google `site:csod.com` search:** it misses the jobs on career sites closed to search engines, 47% of them.
+
+For Ashby, Workday, Deel, Greenhouse, SmartRecruiters, Workable or Lever, use the sibling actors below.
+
 ### Does it need a login or an API key?
 
 No. It reads what each career site shows any visitor, with the anonymous access the page itself uses. You need only an Apify account.
 
-### How do I run it from Python or an AI agent?
+### How do I run it from the API, Python, JavaScript, n8n or an AI agent?
 
-Through the Apify API, with your Apify token:
+Every way takes the same JSON input as the form and needs your Apify token, from https://console.apify.com/settings/integrations.
+
+**API:** one HTTP call that runs the actor, waits for it (up to 300 seconds; a search of every career site takes about 70) and returns the rows. Add `?format=csv` for CSV.
+
+```bash
+curl -X POST "https://api.apify.com/v2/actors/anshumanatrey~cornerstone-jobs-search/run-sync-get-dataset-items" \
+  -H "Authorization: Bearer <YOUR_APIFY_TOKEN>" \
+  -H "Content-Type: application/json" \
+  -d '{"searchTerms": ["software engineer"], "maxJobs": 100}'
+```
+
+**Python** (`pip install apify-client`, version 3 or later; on 2.x write `run["defaultDatasetId"]`):
 
 ```python
 from apify_client import ApifyClient
 
 client = ApifyClient("<YOUR_APIFY_TOKEN>")
 run = client.actor("anshumanatrey/cornerstone-jobs-search").call(run_input={"searchTerms": ["software engineer"]})
-for row in client.dataset(run["defaultDatasetId"]).iterate_items():
+for row in client.dataset(run.default_dataset_id).iterate_items():
     print(row["title"], row["company"], row["location"], row["jobUrl"])
 ```
 
-AI agents can call it through the Apify MCP server at https://mcp.apify.com, and n8n and Make have Apify nodes.
+**JavaScript** (`npm install apify-client`):
+
+```js
+import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: '<YOUR_APIFY_TOKEN>' });
+const run = await client.actor('anshumanatrey/cornerstone-jobs-search').call({ searchTerms: ['software engineer'] });
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+for (const job of items) console.log(job.title, job.company, job.location, job.jobUrl);
+```
+
+**n8n:** add the Apify node, choose Run Actor with this actor and the JSON input above, then Get Dataset Items with the run's `defaultDatasetId`. In an n8n AI Agent, add it as the Apify Tool. Make has an Apify app too.
+
+**AI agents (MCP):** point your MCP client at `https://mcp.apify.com?tools=anshumanatrey/cornerstone-jobs-search` and the agent gets this actor as its own tool, signing in with Apify or sending your token as a Bearer header. On the default server, `https://mcp.apify.com`, an agent can find it with `search-actors` and run it with `call-actor`.
 
 ### Am I charged for closed jobs?
 
@@ -195,4 +254,4 @@ Built and maintained by **Anshuman Atrey** ([@AnshumanAtrey](https://github.com/
 
 ## Last updated
 
-2026-10-30 (version 1.0)
+2026-11-03 (version 1.0)
