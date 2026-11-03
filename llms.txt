@@ -56,7 +56,7 @@ Typical costs (Free and Starter price):
 ## When NOT to use
 
 - The user needs salary, job type or department: Cornerstone does not publish them.
-- The user needs jobs from other platforms in one run: use a multi-ATS actor, or ashby-jobs-search for Ashby.
+- The user needs jobs from another platform: use the sibling actor for it (listed below), or a multi-ATS actor for many platforms in one run.
 - The user needs jobs from a company that is not on Cornerstone.
 
 ## Sample input
@@ -96,6 +96,16 @@ Typical costs (Free and Starter price):
 - vs gefese/cornerstone-jobs-scraper ($0.0015 per job, needs the career-site links): cheaper per job; this actor needs no links and searches every career site at once.
 - vs fantastic-jobs/career-site-job-listing-api ($0.012 per job, $0.01 start): many more platforms from a stored database; this actor costs less per job and reads Cornerstone live.
 - vs memo23/career-site-ats-jobs-api ($0.004 per job, $0.03 start): many more platforms; this actor costs less per job and has no start fee.
+
+## Sibling actors
+
+- Ashby Jobs Scraper (https://apify.com/anshumanatrey/ashby-jobs-search): Jobs from every company on Ashby (jobs.ashbyhq.com), searched live
+- Workday Jobs Scraper (https://apify.com/anshumanatrey/workday-job-search): Jobs from every company on Workday (myworkdayjobs.com), searched live
+- Deel Jobs Scraper (https://apify.com/anshumanatrey/deel-jobs-search): Jobs from every company on Deel ATS (jobs.deel.com), with pay
+- Greenhouse Jobs Scraper (https://apify.com/anshumanatrey/greenhouse-jobs-search): Jobs from every company on Greenhouse (boards.greenhouse.io), searched live
+- SmartRecruiters Jobs Scraper (https://apify.com/anshumanatrey/smartrecruiters-jobs-search): Jobs from 2,900+ companies on SmartRecruiters, searched live
+- Workable Jobs Scraper (https://apify.com/anshumanatrey/workable-job-search): Jobs from every company on Workable, in one search
+- Lever Jobs Scraper (https://apify.com/anshumanatrey/lever-jobs-search): Jobs from 2,300+ companies on Lever (jobs.lever.co), searched live
 
 ## Documentation
 
