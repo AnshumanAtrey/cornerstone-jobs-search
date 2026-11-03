@@ -1,6 +1,6 @@
 # Cornerstone Jobs Scraper & API - All CSOD Career Sites, Remote
 
-Cornerstone jobs scraper and API: search every company's career site on Cornerstone OnDemand (csod.com) at once, live, and get each job's title, company, location, remote flag, posting date, closing date and link, newest first. Turn on full details for the description, the exact posting time, the address and the apply link.
+Cornerstone jobs scraper and API: search every company's career site on Cornerstone OnDemand (csod.com) at once, live, and get each job's title, company, location, remote flag, posting date, closing date and link, newest first. Turn on full details for the description, the address, the apply link and the time the job's requisition was opened, which replaces the posting date.
 
 Use it as a Cornerstone jobs API or CSOD jobs API, a Cornerstone career site scraper or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent through MCP, and export JSON, CSV or Excel. It is the `site:csod.com` Google dork done at the source, and it reaches jobs the dork cannot: nearly half of these jobs sit on career sites closed to search engines. Available as an [Apify Actor](https://apify.com/anshumanatrey/cornerstone-jobs-search). $0.002 per job ($2.00 per 1,000), $0.003 with full details ($3.00 per 1,000), no start fee, no login, no API key.
 
@@ -28,14 +28,14 @@ Use it as a Cornerstone jobs API or CSOD jobs API, a Cornerstone career site scr
 
 ## How much does it cost to scrape Cornerstone jobs?
 
-Pay per event: $2.00 per 1,000 jobs, or $3.00 per 1,000 with full details. Platform usage is included, and there is no start fee or monthly fee.
+Cornerstone Jobs Scraper costs $2.00 per 1,000 jobs, or $3.00 per 1,000 with full details, pay per event. Platform usage is included, and there is no start fee or monthly fee.
 
 | Event | Price | When it is charged |
 |---|---|---|
 | Job | $0.002 | One saved job, and one checked link that is closed or not found |
 | Job with details | $0.003 | One saved job with full details on |
 
-On paid Apify plans these are 10% less on Scale ($0.0018 and $0.0027, so $1.80 and $2.70 per 1,000) and 20% less on Business and above ($0.0016 and $0.0024, so $1.60 and $2.40 per 1,000).
+Cornerstone Jobs Scraper's Apify Store header, "from $1.60 / 1,000 jobs", shows the lowest discount-tier price, the GOLD price. Each Apify plan sits in a discount tier: FREE (the Free plan) and BRONZE (Starter) pay the base prices above, $0.002 and $0.003; SILVER (Scale) pays 10% less, $0.0018 and $0.0027 ($1.80 and $2.70 per 1,000); GOLD (Business) and the enterprise tiers above it pay 20% less, $0.0016 and $0.0024 ($1.60 and $2.40 per 1,000).
 
 | Job (Free and Starter price) | Cost |
 |---|---|
@@ -62,7 +62,7 @@ Where others are cheaper: gefese's actors cost less per job when you already hav
 
 ## Which inputs does it take?
 
-Nothing is required. Type a job title and press Start, or press Start with the form empty.
+Cornerstone Jobs Scraper has no required field. Type a job title and press Start, or press Start with the form empty.
 
 | Field | What it does |
 |---|---|
@@ -71,7 +71,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 | Remote or onsite (`workType`) | remote or hybrid, read from the title and location, since Cornerstone has no remote field. Onsite finds no jobs here, because nothing on Cornerstone marks a job as onsite |
 | Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days, any time, or your own period such as 48 hours |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
-| Full details (`includeDetails`) | Adds the description as text and HTML, exact posting time, reference, apply link, city, region and country |
+| Full details (`includeDetails`) | Adds the description as text and HTML, reference, apply link, city, region and country. Posted on (`postedAt`) then holds the time the job's requisition was opened, not the posting date |
 | Leave out words (`excludeTerms`) | Drops jobs whose title has these words, such as senior or intern |
 | Match descriptions (`searchDescriptions`) | Finds your words in the description too, not only the title |
 | Only these companies (`companies`) | A name (Henkel), the name in the address (henkel) or a career-site link. Empty searches everyone |
@@ -90,7 +90,7 @@ Example input:
 
 ## What does the output look like?
 
-One row per job, newest first. These rows are from a run on 2026-10-30, build 1.0.1, searching one company for the word engineer in 1 second:
+Cornerstone Jobs Scraper returns one row per job, newest first. These rows are from a run on 2026-10-30, build 1.0.1, searching one company for the word engineer in 1 second:
 
 | Job title (`title`) | Company name (`company`) | Main location (`location`) | Posted on (`postedAt`) | Still open? (`status`) |
 |---|---|---|---|---|
@@ -120,21 +120,21 @@ One row as JSON:
 }
 ```
 
-Full details add `description`, `descriptionHtml`, `reference`, `city`, `region`, `country` and `countryCode`, and replace the posting date with the exact time. A run also writes an `OUTPUT` record: how many career sites were read, how many jobs matched and were saved, and any notes on how your input was read.
+Full details add `description`, `descriptionHtml`, `reference`, `city`, `region`, `country` and `countryCode`, and `postedAt` then holds the date and time the company opened the job's requisition in Cornerstone, not the posting date. An open checked job link carries that time too, with Full details on or off. The two dates can be far apart: job 954 above was dated 2026-07-03 by a search (run takgbge7em1qt4MaA) and 2024-09-09T16:30:28Z by a link check (run E4Fwz4hH7zSid7e92), both on 2026-11-03. In a search, Posted in the last (`postedWithin`) and the newest-first order use the posting date, with Full details on or off. A run also writes an `OUTPUT` record: how many career sites were read, how many jobs matched and were saved, and any notes on how your input was read.
 
 ## How fast is it?
 
-Every career site in 69 seconds at the default 2 GB of memory (run b24SuuFL58CMyduIh, 2026-10-30, 100 newest jobs). A search of named companies takes seconds, and details add a moment per job. An empty form stops reading once Number of jobs is filled with jobs dated today, because nothing can be newer: the default 100 took 2 seconds of reading (run 6AFdE5CkCJmIJwNXH, build 1.0.5, 2026-10-30).
+Cornerstone Jobs Scraper searches every career site in 69 seconds at the default 2 GB of memory (run b24SuuFL58CMyduIh, 2026-10-30, 100 newest jobs). A search of named companies takes seconds, and details add a moment per job. An empty form stops reading once Number of jobs is filled with jobs dated today, because nothing can be newer: the default 100 took 2 seconds of reading (run 6AFdE5CkCJmIJwNXH, build 1.0.5, 2026-10-30).
 
 ## Common questions
 
 ### How much does it cost per 1,000 jobs?
 
-$2.00 per 1,000 jobs, or $3.00 per 1,000 with full details, on Apify's Free and Starter plans, with no start fee and platform usage included. Scale pays $1.80 and $2.70 per 1,000, Business and above $1.60 and $2.40. The 100 newest jobs cost $0.20.
+Cornerstone Jobs Scraper costs $2.00 per 1,000 jobs, or $3.00 per 1,000 with full details, on Apify's Free and Starter plans, with no start fee and platform usage included. Scale pays $1.80 and $2.70 per 1,000, and Business and above $1.60 and $2.40, the "from $1.60" in the Store header. The 100 newest jobs cost $0.20.
 
 ### Does it work on the Apify free plan?
 
-Yes. The free plan's $5 monthly credit pays for 2,500 jobs, or 1,666 with full details, and a run costs only its jobs. Number of jobs (`maxJobs`) caps each run, and when the credit or your spending limit runs out, the run stops with the jobs it paid for and says so.
+Cornerstone Jobs Scraper works on the Apify free plan: the plan's $5 monthly credit pays for 2,500 jobs, or 1,666 with full details, and a run costs only its jobs. Number of jobs (`maxJobs`) caps each run, and when the credit or your spending limit runs out, the run stops with the jobs it paid for and says so.
 
 ### Why are these jobs not on Google?
 
@@ -142,27 +142,27 @@ Each company's Cornerstone career site has a setting for search engines. Where i
 
 ### How does it find every company?
 
-The Wayback Machine lists every archived page under csod.com, which gave 1,754 career sites; 1,110 still answer. That is the `site:csod.com` idea run on an archive instead of a search engine. To search a company that is not on the list, paste its career-site link into Only these companies.
+Cornerstone Jobs Scraper's list of career sites comes from the Wayback Machine, which lists every archived page under csod.com: that gave 1,754 career sites, and 1,110 still answer. That is the `site:csod.com` idea run on an archive instead of a search engine. To search a company that is not on the list, paste its career-site link into Only these companies.
 
 ### How do I search one company?
 
-Type it into Only these companies (`companies`): its name (Henkel), the first words of its name (World Bank finds World Bank Group), the name in its address (henkel from henkel.csod.com) or a career-site link. A name finds every career site of that company, and one company takes seconds. As JSON: `{"companies": ["Henkel"], "searchTerms": ["engineer"]}`.
+To search one company on Cornerstone, type it into Only these companies (`companies`): its name (Henkel), the first words of its name (World Bank finds World Bank Group), the name in its address (henkel from henkel.csod.com) or a career-site link. A name finds every career site of that company, and one company takes seconds. As JSON: `{"companies": ["Henkel"], "searchTerms": ["engineer"]}`.
 
 ### How do I check a list of job links?
 
-Paste them into Job links to check (`jobUrls`), one per line. Career-site job links such as `https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold` work, and so do the older `JobDetails.aspx` links. Each comes back open with the job, closed, or not found (no such job or career site). An open link is a normal Job row ($0.002, or $0.003 with full details), a closed or not-found link is one Job ($0.002), and a link Cornerstone does not answer is not charged and is counted in the run message. Three links took 11 seconds (run 2eQyLTWVArakcCSB8, 2026-10-30).
+To check a list of Cornerstone job links, paste them into Job links to check (`jobUrls`), one per line. Career-site job links such as `https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold` work, and so do the older `JobDetails.aspx` links. Each comes back open with the job, closed, or not found (no such job or career site), and an open job's `postedAt` is the time its requisition was opened, not the posting date. An open link is a normal Job row ($0.002, or $0.003 with full details), a closed or not-found link is one Job ($0.002), and a link Cornerstone does not answer is not charged and is counted in the run message. Three links took 11 seconds (run 2eQyLTWVArakcCSB8, 2026-10-30).
 
 ### Which fields come back?
 
-Every row has `title`, `company`, `location`, `otherLocations`, `workType`, `postedAt`, `expiresAt`, `jobUrl`, `applyUrl`, `status`, `platform`, `companySlug`, `jobId` and `checkedAt`. Full details (`includeDetails`) add `description`, `descriptionHtml`, `reference`, `city`, `region`, `country` and `countryCode`, and turn `postedAt` into the exact time. Cornerstone publishes no salary, job type or department, so none comes back. Export as JSON, CSV or Excel.
+Every Cornerstone Jobs Scraper row has `title`, `company`, `location`, `otherLocations`, `workType`, `postedAt`, `expiresAt`, `jobUrl`, `applyUrl`, `status`, `platform`, `companySlug`, `jobId` and `checkedAt`. Full details (`includeDetails`) add `description`, `descriptionHtml`, `reference`, `city`, `region`, `country` and `countryCode`. `postedAt` is the posting date in a search, and the time the job's requisition was opened with Full details on or for a checked link. Cornerstone publishes no salary, job type or department, so none comes back. Export as JSON, CSV or Excel.
 
 ### How often should I run it?
 
-Once a day gives a fresh feed: schedule it in Apify with Posted in the last (`postedWithin`) set to 24 hours. Cornerstone gives the day a job was posted, not the hour, so 24 hours also keeps the jobs dated the day before, and two daily runs can share a job: keep `jobUrl` as the key to drop repeats.
+Running Cornerstone Jobs Scraper once a day gives a fresh feed: schedule it in Apify with Posted in the last (`postedWithin`) set to 24 hours. Cornerstone gives the day a job was posted, not the hour, so 24 hours also keeps the jobs dated the day before, and two daily runs can share a job: keep `jobUrl` as the key to drop repeats.
 
 ### Which Cornerstone scraper should I pick?
 
-It depends on what you start from (Store listings and free-plan prices on 2026-10-30):
+The right Cornerstone scraper depends on what you start from (Store listings and free-plan prices on 2026-10-30):
 
 - **A job title, across every employer on Cornerstone:** this actor, $0.002 per job, read live, including the 47% of jobs on career sites closed to Google.
 - **Career-site links you already have:** gefese/cornerstone-jobs-scraper costs less, $0.0015 per job.
@@ -173,11 +173,11 @@ For Ashby, Workday, Deel, Greenhouse, SmartRecruiters, Workable or Lever, use th
 
 ### Does it need a login or an API key?
 
-No. It reads what each career site shows any visitor, with the anonymous access the page itself uses. You need only an Apify account.
+Cornerstone Jobs Scraper needs no login and no API key: it reads what each career site shows any visitor, with the anonymous access the page itself uses. You need only an Apify account.
 
 ### How do I run it from the API, Python, JavaScript, n8n or an AI agent?
 
-Every way takes the same JSON input as the form and needs your Apify token, from https://console.apify.com/settings/integrations.
+Cornerstone Jobs Scraper runs from the API, Python, JavaScript, n8n or an AI agent with the same JSON input as the form and your Apify token, from https://console.apify.com/settings/integrations.
 
 **API:** one HTTP call that runs the actor, waits for it (up to 300 seconds; a search of every career site takes about 70) and returns the rows. Add `?format=csv` for CSV.
 
@@ -216,11 +216,11 @@ for (const job of items) console.log(job.title, job.company, job.location, job.j
 
 ### Am I charged for closed jobs?
 
-A search returns open jobs only. A pasted link that turns out closed or not found is one Job row, because it was checked and answered.
+Cornerstone Jobs Scraper charges for a closed job only when you paste its link: a search returns open jobs only, and a pasted link that turns out closed or not found is one Job row, because it was checked and answered.
 
 ### Is it legal to use?
 
-It reads public job postings. You are responsible for how you use the data, including each site's terms and the privacy laws that apply to you.
+Cornerstone Jobs Scraper reads public job postings. You are responsible for how you use the data, including each site's terms and the privacy laws that apply to you.
 
 ## Limitations
 
@@ -232,7 +232,7 @@ It reads public job postings. You are responsible for how you use the data, incl
 
 ## Who maintains it?
 
-Built and maintained by **Anshuman Atrey** ([@AnshumanAtrey](https://github.com/AnshumanAtrey)), who publishes a portfolio of data and OSINT actors on Apify Store, among them [linkedin-harvester](https://apify.com/anshumanatrey/linkedin-harvester) (email to LinkedIn profile, for the people behind a company) and [theharvester-osint](https://apify.com/anshumanatrey/theharvester-osint) (domain to emails and subdomains). For a feature request or a bug, message [LinkedIn](https://linkedin.com/in/anshumanatrey) (fastest), open an issue on the GitHub repo, or write through [atrey.dev](https://atrey.dev).
+Cornerstone Jobs Scraper is built and maintained by **Anshuman Atrey** ([@AnshumanAtrey](https://github.com/AnshumanAtrey)), who publishes a portfolio of data and OSINT actors on Apify Store, among them [linkedin-harvester](https://apify.com/anshumanatrey/linkedin-harvester) (email to LinkedIn profile, for the people behind a company) and [theharvester-osint](https://apify.com/anshumanatrey/theharvester-osint) (domain to emails and subdomains). For a feature request or a bug, message [LinkedIn](https://linkedin.com/in/anshumanatrey) (fastest), open an issue on the GitHub repo, or write through [atrey.dev](https://atrey.dev).
 
 ## Sibling actors
 

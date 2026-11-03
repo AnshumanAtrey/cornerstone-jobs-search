@@ -91,7 +91,7 @@
             "title": "Full details (includeDetails)",
             "type": "boolean",
             "editor": "checkbox",
-            "description": "Tick to add the full details of each job: the description as text and HTML, the exact posting time, the reference, the company's apply link, and the city, region and country. A job with details costs $3.00 per 1,000 instead of $2.00.",
+            "description": "Tick to add the full details of each job: the description as text and HTML, the reference, the company's apply link, and the city, region and country. Posted on (postedAt) then holds the time the job's requisition was opened, not the posting date. A job with details costs $3.00 per 1,000 instead of $2.00.",
             "default": false,
             "nullable": true
         },

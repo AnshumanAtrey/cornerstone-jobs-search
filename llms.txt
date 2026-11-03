@@ -4,7 +4,7 @@
 
 ## Summary
 
-Cornerstone Jobs Search is an Apify actor that searches every company's career site on Cornerstone OnDemand (csod.com) at once and returns one row per job, newest first: title, company, location, remote flag, posting date, closing date and link. It covers 1,110 career sites of 605 employers and 61,000+ open jobs (2026-10-30), including McDonald's, Henkel, Turner Construction, STRABAG, Linde and Kohler. It reads Cornerstone live at run time with no login and no API key, and 47% of these jobs sit on career sites closed to search engines, so a site:csod.com Google search does not find them. It is built for job seekers and job boards, recruiters, sales and market research teams, and AI agents that need a live feed of Cornerstone jobs. It costs $2.00 per 1,000 jobs, or $3.00 per 1,000 with full details, with no start fee.
+Cornerstone Jobs Scraper is an Apify actor that searches every company's career site on Cornerstone OnDemand (csod.com) at once and returns one row per job, newest first: title, company, location, remote flag, posting date, closing date and link. It covers 1,110 career sites of 605 employers and 61,000+ open jobs (2026-10-30), including McDonald's, Henkel, Turner Construction, STRABAG, Linde and Kohler. It reads Cornerstone live at run time with no login and no API key, and 47% of these jobs sit on career sites closed to search engines, so a site:csod.com Google search does not find them. It is built for job seekers and job boards, recruiters, sales and market research teams, and AI agents that need a live feed of Cornerstone jobs. It costs $2.00 per 1,000 jobs, or $3.00 per 1,000 with full details, with no start fee.
 
 Store: https://apify.com/anshumanatrey/cornerstone-jobs-search
 Source: https://github.com/AnshumanAtrey/cornerstone-jobs-search
@@ -25,7 +25,7 @@ Source: https://github.com/AnshumanAtrey/cornerstone-jobs-search
 - Remote or onsite (workType): remote or hybrid, read from the title and location; onsite finds no jobs, because nothing on Cornerstone marks a job as onsite.
 - Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
 - Number of jobs (maxJobs): 100 by default, 0 for every match.
-- Full details (includeDetails): adds the description, exact time, reference, apply link and address.
+- Full details (includeDetails): adds the description, reference, apply link and address; postedAt then holds the time the job's requisition was opened, not the posting date.
 - Leave out words (excludeTerms): drops jobs whose title has these words.
 - Match descriptions (searchDescriptions): finds your words in the description too.
 - Only these companies (companies): a name, the name in the address, or a career-site link.
@@ -34,7 +34,8 @@ Source: https://github.com/AnshumanAtrey/cornerstone-jobs-search
 ## Output fields
 
 - Every row: title, company, location, otherLocations, workType, postedAt, expiresAt, jobUrl, applyUrl, status, platform, companySlug, jobId, checkedAt.
-- With full details (includeDetails): also description, descriptionHtml, reference, city, region, country and countryCode, and postedAt becomes the exact time.
+- With full details (includeDetails): also description, descriptionHtml, reference, city, region, country and countryCode.
+- postedAt: in a search, the day the job was posted on the career site (a date, no time). With full details on, and for an open checked link, the date and time the company opened the job's requisition in Cornerstone, which can be far earlier: job 954 at NewCold was dated 2026-07-03 by a search (run takgbge7em1qt4MaA) and 2024-09-09T16:30:28Z by a link check (run E4Fwz4hH7zSid7e92), both on 2026-11-03. In a search, postedWithin and the newest-first order use the posting date, with full details on or off.
 - status: open for every search result; for a checked link, open, closed or not found.
 - No salary, job type or department fields: Cornerstone does not publish them.
 - The OUTPUT record in the default key-value store: career sites read, jobs matched and saved, and notes on how the input was read.
@@ -47,7 +48,7 @@ PAY_PER_EVENT model, platform usage included, no start fee:
 - Job: $0.002 per saved job ($2.00 per 1,000), and per checked link that is closed or not found
 - Job with details: $0.003 per saved job with full details on ($3.00 per 1,000)
 
-On paid Apify plans these are 10% less on Scale ($0.0018 and $0.0027, so $1.80 and $2.70 per 1,000) and 20% less on Business and above ($0.0016 and $0.0024, so $1.60 and $2.40 per 1,000).
+Discount tiers: the Apify Store header, "from $1.60 / 1,000 jobs", shows the lowest discount-tier price, the GOLD price. FREE (Apify's Free plan) and BRONZE (Starter) pay the base prices above, $0.002 and $0.003; SILVER (Scale) pays 10% less, $0.0018 and $0.0027 ($1.80 and $2.70 per 1,000); GOLD (Business) and the enterprise tiers above it pay 20% less, $0.0016 and $0.0024 ($1.60 and $2.40 per 1,000).
 
 Typical costs (Free and Starter price):
 
@@ -90,12 +91,12 @@ Every way takes the same JSON input as the form and an Apify token.
 
 ## Common questions
 
-- Is it legal? It reads public job postings, what each career site shows any visitor, with no login. The user is responsible for how the data is used, including each site's terms and the privacy laws that apply.
-- Does it work on the Apify free plan? Yes: the $5 monthly credit pays for 2,500 jobs, or 1,666 with full details, and a run that reaches the spending limit stops with the jobs it paid for.
-- How often should it run? Once a day, with postedWithin set to "24 hours". Cornerstone gives the posting day, not the hour, so 24 hours also keeps the jobs dated the day before: dedupe on jobUrl.
-- How to search one company? companies: a name (Henkel), the first words of a name (World Bank finds World Bank Group), the name in the address (henkel) or a career-site link. A name finds every career site of that company, in seconds.
-- How to check a list of job links? jobUrls, one per line (career-site links or the older JobDetails.aspx links): each comes back open with the job, closed, or not found. A closed or not-found link costs one Job ($0.002); a link Cornerstone does not answer is not charged.
-- How does it compare with alternatives? See the differentiators below. A Google site:csod.com search misses the 47% of jobs on career sites closed to search engines.
+- Is it legal? Cornerstone Jobs Scraper reads public job postings, what each career site shows any visitor, with no login. The user is responsible for how the data is used, including each site's terms and the privacy laws that apply.
+- Does it work on the Apify free plan? Cornerstone Jobs Scraper works on the free plan: its $5 monthly credit pays for 2,500 jobs, or 1,666 with full details, and a run that reaches the spending limit stops with the jobs it paid for.
+- How often should it run? A daily run of Cornerstone Jobs Scraper with postedWithin set to "24 hours" gives a fresh feed. Cornerstone gives the posting day, not the hour, so 24 hours also keeps the jobs dated the day before: dedupe on jobUrl.
+- How to search one company? To search one Cornerstone company, set companies to a name (Henkel), the first words of a name (World Bank finds World Bank Group), the name in the address (henkel) or a career-site link. A name finds every career site of that company, in seconds.
+- How to check a list of job links? To check Cornerstone job links, put them in jobUrls, one per line (career-site links or the older JobDetails.aspx links): each comes back open with the job, closed, or not found, and an open job's postedAt is the time its requisition was opened. A closed or not-found link costs one Job ($0.002); a link Cornerstone does not answer is not charged.
+- How does it compare with alternatives? Cornerstone Jobs Scraper searches every career site live with no links needed, and the differentiators below compare it with each alternative. A Google site:csod.com search misses the 47% of jobs on career sites closed to search engines.
 
 ## Sample input
 

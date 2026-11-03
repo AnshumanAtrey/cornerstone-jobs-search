@@ -20,7 +20,7 @@
         "dataset": {
             "actorSpecification": 1,
             "title": "Cornerstone jobs",
-            "description": "One row per job, newest first: title, company, locations, remote or hybrid, posting and closing dates and links; with details on, also the description, reference, exact posting time and address. Cornerstone publishes no pay or job type. The run summary is the OUTPUT record, not a row.",
+            "description": "One row per job, newest first: title, company, locations, remote or hybrid, posting and closing dates and links; with details on, also the description, reference and address, and the time the job's requisition was opened in place of the posting date. Cornerstone publishes no pay or job type. The run summary is the OUTPUT record, not a row.",
             "fields": {
                 "type": "object",
                 "properties": {
@@ -80,7 +80,7 @@
                             "null"
                         ],
                         "title": "Posted on (postedAt)",
-                        "description": "When the job was posted: a date, or the exact time with details on.",
+                        "description": "In a search, the day the job was posted on the career site. With details on, and for a checked link that is open, the date and time the company opened the job's requisition in Cornerstone, which can be long before the posting date.",
                         "example": "2026-07-03"
                     },
                     "jobUrl": {
@@ -214,7 +214,7 @@
             "views": {
                 "jobs": {
                     "title": "Jobs",
-                    "description": "One row per job: what it is, where, remote or not and when it was posted, with its link.",
+                    "description": "One row per job: what it is, where, remote or not, when it was posted (or opened, with details on) and its link.",
                     "transformation": {
                         "fields": [
                             "title",
