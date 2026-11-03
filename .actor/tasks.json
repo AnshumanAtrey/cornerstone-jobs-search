@@ -12,7 +12,15 @@
             "description": "Get every job that 605 employers on Cornerstone OnDemand posted in the last day, newest first, with the company, location and link. Schedule it daily for a fresh feed of jobs, many of them closed to Google.",
             "input": {
                 "postedWithin": "24 hours",
-                "maxJobs": 100
+                "maxJobs": 100,
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "New Cornerstone Jobs in the Last 24 Hours",
             "seoDescription": "Every job posted on Cornerstone OnDemand career sites in the last day, newest first, with company, location and link. Run it daily for a fresh job feed.",
@@ -33,7 +41,15 @@
                 "workType": [
                     "remote"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "searchTerms": [],
+                "location": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Remote Jobs on Cornerstone Career Sites",
             "seoDescription": "Search every Cornerstone OnDemand career site for remote jobs at once, newest first, with company, location, posting date and link. No login needed.",
@@ -54,7 +70,15 @@
                 "searchTerms": [
                     "software engineer"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Software Engineer Jobs on Cornerstone",
             "seoDescription": "Search every Cornerstone OnDemand career site for software engineer jobs, newest first, including sites closed to Google. Company, place, date, link.",
@@ -78,7 +102,14 @@
                 "location": [
                     "United States"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "workType": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Nurse Jobs in the USA on Cornerstone",
             "seoDescription": "Search the hospitals and health systems on Cornerstone OnDemand for nurse jobs in the United States, newest first, with employer, city, date and link.",
@@ -102,7 +133,14 @@
                 "location": [
                     "Germany"
                 ],
-                "maxJobs": 100
+                "maxJobs": 100,
+                "workType": [],
+                "postedWithin": "any time",
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Project Manager Jobs in Germany on Cornerstone",
             "seoDescription": "Search every Cornerstone OnDemand career site for project manager jobs in Germany, newest first, with company, city, posting date and job link.",
@@ -127,7 +165,13 @@
                     "Europe"
                 ],
                 "postedWithin": "7 days",
-                "maxJobs": 100
+                "maxJobs": 100,
+                "workType": [],
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": [],
+                "jobUrls": []
             },
             "seoTitle": "Sales Jobs in Europe on Cornerstone, Last 7 Days",
             "seoDescription": "Sales jobs posted across Europe in the last 7 days on Cornerstone OnDemand career sites, newest first, with company, city, posting date and job link.",
@@ -147,7 +191,16 @@
             "input": {
                 "jobUrls": [
                     "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/954?c=newcold"
-                ]
+                ],
+                "searchTerms": [],
+                "location": [],
+                "workType": [],
+                "postedWithin": "any time",
+                "maxJobs": 100,
+                "includeDetails": false,
+                "excludeTerms": [],
+                "searchDescriptions": false,
+                "companies": []
             },
             "seoTitle": "Check if Cornerstone Job Links Are Still Open",
             "seoDescription": "Paste Cornerstone job links and see which are open, closed or gone. Clean dead links out of a job board or a spreadsheet, with no login or API key.",

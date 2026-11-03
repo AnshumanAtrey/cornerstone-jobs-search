@@ -134,9 +134,6 @@
             "editor": "stringList",
             "description": "Paste Cornerstone job links, one per line, to check whether they are still open instead of searching. Each link comes back open (with the job), closed, or not found. Handy for cleaning dead links out of a job board or a sheet.",
             "placeholderValue": "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/3110?c=newcold",
-            "example": [
-                "https://newcold.csod.com/ux/ats/careersite/5/home/requisition/3110?c=newcold"
-            ],
             "default": [],
             "sectionCaption": "Check job links",
             "nullable": true
