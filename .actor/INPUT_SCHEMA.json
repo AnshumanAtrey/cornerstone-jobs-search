@@ -32,7 +32,7 @@
             "title": "Remote or onsite (workType)",
             "type": "array",
             "editor": "select",
-            "description": "Pick remote, hybrid or onsite, or several. Leave it empty for all of them. Cornerstone has no remote field, so remote and hybrid are read from the title and location, and onsite keeps only jobs that say so. Typed words such as wfh work too.",
+            "description": "Pick remote or hybrid, or both. Leave it empty for every job. Cornerstone has no remote field, so remote and hybrid are read from the title and location. Onsite finds no jobs here, because nothing on Cornerstone marks a job as onsite. Typed words such as wfh work too.",
             "items": {
                 "type": "string",
                 "enumSuggestedValues": [

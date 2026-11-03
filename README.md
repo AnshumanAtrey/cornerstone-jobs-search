@@ -68,7 +68,7 @@ Nothing is required. Type a job title and press Start, or press Start with the f
 |---|---|
 | Job titles to find (`searchTerms`) | One per line. A job matches when its title has every word: frontend also finds Front-End. A pasted Google dork or Cornerstone link works too |
 | Where the job is (`location`) | A city, state, country or region: London, United States, EMEA, LatAm. Worldwide finds jobs open everywhere, and Remote asks for remote jobs |
-| Remote or onsite (`workType`) | remote, hybrid or onsite. Cornerstone has no remote field, so this reads the title and location |
+| Remote or onsite (`workType`) | remote or hybrid, read from the title and location, since Cornerstone has no remote field. Onsite finds no jobs here, because nothing on Cornerstone marks a job as onsite |
 | Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days, any time, or your own period such as 48 hours |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
 | Full details (`includeDetails`) | Adds the description as text and HTML, exact posting time, reference, apply link, city, region and country |
@@ -165,7 +165,7 @@ It reads public job postings. You are responsible for how you use the data, incl
 
 ## Limitations
 
-- Cornerstone publishes no salary, job type, department or remote field, so none is shown. Remote and hybrid are read from the title and location only.
+- Cornerstone publishes no salary, job type, department or remote field, so none is shown. Remote and hybrid are read from the title and location only, and nothing marks a job as onsite, so the onsite choice of Remote or onsite (`workType`) finds no jobs.
 - Titles and descriptions come in the company's own language.
 - Company names: Cornerstone publishes only the name in the address, so the big employers are written by hand and the rest are read from that name.
 - The list of career sites was built on 2026-10-30. A company that joined later is searched only when you name it.

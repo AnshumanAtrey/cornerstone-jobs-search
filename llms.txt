@@ -22,7 +22,7 @@ Source: https://github.com/AnshumanAtrey/cornerstone-jobs-search
 
 - Job titles to find (searchTerms): one per line; a job matches when its title has every word.
 - Where the job is (location): city, state, country or region.
-- Remote or onsite (workType): remote, hybrid or onsite, read from the title and location.
+- Remote or onsite (workType): remote or hybrid, read from the title and location; onsite finds no jobs, because nothing on Cornerstone marks a job as onsite.
 - Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
 - Number of jobs (maxJobs): 100 by default, 0 for every match.
 - Full details (includeDetails): adds the description, exact time, reference, apply link and address.
@@ -56,6 +56,7 @@ Typical costs (Free and Starter price):
 ## When NOT to use
 
 - The user needs salary, job type or department: Cornerstone does not publish them.
+- The user needs only onsite jobs: nothing on Cornerstone marks a job as onsite, so the onsite choice finds none.
 - The user needs jobs from another platform: use the sibling actor for it (listed below), or a multi-ATS actor for many platforms in one run.
 - The user needs jobs from a company that is not on Cornerstone.
 
