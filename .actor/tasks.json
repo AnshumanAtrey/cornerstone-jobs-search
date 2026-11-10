@@ -1,5 +1,5 @@
 {
-    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build.",
+    "$comment": "Example tasks published on the Store by scripts/publish-tasks.mjs after every deploy (CI only). Each one is a search people type, with its own Google-indexed landing page and .md (manager/rules/SEO.md section 18). Limits: title 63, description 400, seoTitle 60, seoDescription 160 (154 kept), 10 per actor. inputSchemaFields must stay fields of the input schema, or the page stops showing after a build. Tasks marked publish false stay saved but off the Store: the account publishes at most 100 pages across all actors, so each actor keeps 2 or more by its earnings and search traffic (2026-11-11).",
     "options": {
         "build": "latest",
         "memoryMbytes": 2048,
@@ -8,6 +8,7 @@
     "tasks": [
         {
             "name": "cornerstone-jobs-last-24-hours",
+            "publish": false,
             "title": "Find every Cornerstone job posted in the last 24 hours",
             "description": "Get every job that 605 employers on Cornerstone OnDemand posted in the last day, newest first, with the company, location and link. Schedule it daily for a fresh feed of jobs, many of them closed to Google.",
             "input": {
@@ -64,6 +65,7 @@
         },
         {
             "name": "software-engineer-jobs-cornerstone",
+            "publish": false,
             "title": "Find software engineer jobs on Cornerstone career sites",
             "description": "Get the newest software engineer jobs from every employer on Cornerstone OnDemand, including the career sites closed to Google, with the company, location, posting date and link.",
             "input": {
@@ -93,6 +95,7 @@
         },
         {
             "name": "nurse-jobs-usa-cornerstone",
+            "publish": false,
             "title": "Find nurse jobs in the United States on Cornerstone",
             "description": "Get the newest nurse jobs in the United States from the hospitals and health systems on Cornerstone OnDemand, with the employer, city, posting date and link.",
             "input": {
@@ -124,6 +127,7 @@
         },
         {
             "name": "project-manager-jobs-germany-cornerstone",
+            "publish": false,
             "title": "Find project manager jobs in Germany on Cornerstone",
             "description": "Get the newest project manager jobs in Germany from every employer on Cornerstone OnDemand, with the company, city, posting date and link. Titles come in the language the company writes them.",
             "input": {
@@ -155,6 +159,7 @@
         },
         {
             "name": "sales-jobs-europe-last-7-days",
+            "publish": false,
             "title": "Find sales jobs in Europe posted in the last 7 days",
             "description": "Get the sales jobs that employers on Cornerstone OnDemand posted across Europe in the last week, newest first, with the company, city and link. A region finds every country in it.",
             "input": {
