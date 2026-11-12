@@ -4,6 +4,13 @@ Cornerstone jobs scraper and API: search every company's career site on Cornerst
 
 Use it as a Cornerstone jobs API or CSOD jobs API, a Cornerstone career site scraper or a daily job feed from the Apify Console, the Apify API, Python, JavaScript, n8n, Make or an AI agent through MCP, and export JSON, CSV or Excel. It is the `site:csod.com` Google dork done at the source, and it reaches jobs the dork cannot: nearly half of these jobs sit on career sites closed to search engines. Available as an [Apify Actor](https://apify.com/anshumanatrey/cornerstone-jobs-search). $0.002 per job ($2.00 per 1,000), $0.003 with full details ($3.00 per 1,000), no start fee, no login, no API key.
 
+**Use it from an AI assistant:**
+
+- **Claude** (claude.ai and the desktop app): [Add Cornerstone Jobs to Claude](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Cornerstone%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fcornerstone-jobs-search), click Continue, sign in to Apify, Allow, and ask in plain words.
+- **Claude Code:** `claude mcp add --transport http cornerstone-jobs-search "https://mcp.apify.com?tools=anshumanatrey/cornerstone-jobs-search"`, then run `/mcp` to sign in to Apify.
+- **Codex:** `codex mcp add cornerstone-jobs-search --url "https://mcp.apify.com?tools=anshumanatrey/cornerstone-jobs-search"`, then `codex mcp login cornerstone-jobs-search`.
+- **Any other MCP client:** `https://mcp.apify.com?tools=anshumanatrey/cornerstone-jobs-search`, signed in with Apify or an `Authorization: Bearer <APIFY_TOKEN>` header.
+
 ## What does it do?
 
 - **Searches 1,110 career sites of 605 employers at once**, about a minute for all of them. 61,000+ open jobs, at employers such as McDonald's, Henkel, Turner Construction, STRABAG, Linde, Kohler, A.S. Watson, CEVA Logistics, the World Bank Group, and many universities and hospitals.
