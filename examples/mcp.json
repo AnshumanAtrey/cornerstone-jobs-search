@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "cornerstone-jobs-search": {
+      "url": "https://mcp.apify.com?tools=anshumanatrey/cornerstone-jobs-search",
+      "headers": {
+        "Authorization": "Bearer <YOUR_APIFY_TOKEN>"
+      }
+    }
+  }
+}
