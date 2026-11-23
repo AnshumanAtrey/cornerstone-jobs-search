@@ -33,6 +33,7 @@ Source: https://github.com/AnshumanAtrey/cornerstone-jobs-search
 - Remote or onsite (workType): remote or hybrid, read from the title and location; onsite finds no jobs, because nothing on Cornerstone marks a job as onsite.
 - Posted in the last (postedWithin): 24 hours, 3 days, 7 days, 30 days, any time, or your own period.
 - Number of jobs (maxJobs): 100 by default, 0 for every match.
+- Only new jobs (onlyNewJobs): on, a run again returns only jobs no earlier run of it delivered, so a schedule never pays for a job twice.
 - Full details (includeDetails): adds the description, reference, apply link and address; postedAt then holds the time the job's requisition was opened, not the posting date.
 - Leave out words (excludeTerms): drops jobs whose title has these words.
 - Match descriptions (searchDescriptions): finds your words in the description too.

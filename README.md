@@ -2,7 +2,7 @@
 
 [![Run on Apify](https://img.shields.io/badge/Run%20on-Apify-246DFF?style=for-the-badge)](https://apify.com/anshumanatrey/cornerstone-jobs-search) [![Add to Claude](https://img.shields.io/badge/Add%20to-Claude-D97757?style=for-the-badge)](https://claude.ai/customize/connectors?modal=add-custom-connector&connectorName=Cornerstone%20Jobs&connectorUrl=https%3A%2F%2Fmcp.apify.com%3Ftools%3Danshumanatrey%2Fcornerstone-jobs-search) [![API examples](https://img.shields.io/badge/API-examples-24292F?style=for-the-badge)](examples)
 
-This repo is the public home of the [Cornerstone Jobs Scraper & API - All CSOD Career Sites, Remote](https://apify.com/anshumanatrey/cornerstone-jobs-search) actor on Apify: its docs, API examples in [`examples/`](examples), MCP setup and issues. The actor runs on Apify; its source code is private.
+This repo is the public home of the [Cornerstone Jobs Scraper & API - CSOD ATS Career Sites, Remote](https://apify.com/anshumanatrey/cornerstone-jobs-search) actor on Apify: its docs, API examples in [`examples/`](examples), MCP setup and issues. The actor runs on Apify; its source code is private.
 
 Cornerstone jobs scraper and API: search every company's career site on Cornerstone OnDemand (csod.com) at once, live, and get each job's title, company, location, remote flag, posting date, closing date and link, newest first. Turn on full details for the description, the address, the apply link and the time the job's requisition was opened, which replaces the posting date.
 
@@ -83,6 +83,7 @@ Cornerstone Jobs Scraper has no required field. Type a job title and press Start
 | Remote or onsite (`workType`) | remote or hybrid, read from the title and location, since Cornerstone has no remote field. Onsite finds no jobs here, because nothing on Cornerstone marks a job as onsite |
 | Posted in the last (`postedWithin`) | 24 hours, 3 days, 7 days, 30 days, any time, or your own period such as 48 hours |
 | Number of jobs (`maxJobs`) | How many, newest first: 100 by default, 0 for every match |
+| Only new jobs (`onlyNewJobs`) | On: a run again returns only jobs no earlier run of it delivered, so a schedule never gets or pays for a job twice. Off by default |
 | Full details (`includeDetails`) | Adds the description as text and HTML, reference, apply link, city, region and country. Posted on (`postedAt`) then holds the time the job's requisition was opened, not the posting date |
 | Leave out words (`excludeTerms`) | Drops jobs whose title has these words, such as senior or intern |
 | Match descriptions (`searchDescriptions`) | Finds your words in the description too, not only the title |

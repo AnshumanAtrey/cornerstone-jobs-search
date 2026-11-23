@@ -1,4 +1,4 @@
-// Run Cornerstone Jobs Scraper & API - All CSOD Career Sites, Remote on Apify and print each dataset row as JSON.
+// Run Cornerstone Jobs Scraper & API - CSOD ATS Career Sites, Remote on Apify and print each dataset row as JSON.
 //   npm install apify-client
 //   APIFY_TOKEN=... node run.mjs
 import { readFileSync } from 'node:fs';

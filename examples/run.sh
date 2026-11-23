@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Run Cornerstone Jobs Scraper & API - All CSOD Career Sites, Remote on Apify and print the dataset rows as JSON.
+# Run Cornerstone Jobs Scraper & API - CSOD ATS Career Sites, Remote on Apify and print the dataset rows as JSON.
 # Needs an Apify API token: https://console.apify.com/settings/integrations
 #   APIFY_TOKEN=... ./run.sh [input.json]
 set -euo pipefail
