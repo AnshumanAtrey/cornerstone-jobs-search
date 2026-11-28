@@ -1,0 +1,21 @@
+{
+  "name": "cornerstone-jobs-search",
+  "version": "1.0.0",
+  "description": "Search every Cornerstone OnDemand career site at once: job titles, locations, remote work and posting dates. Newest first, read live, no login.",
+  "mcpServers": {
+    "cornerstone-jobs-search": {
+      "httpUrl": "https://mcp.apify.com?tools=anshumanatrey/cornerstone-jobs-search",
+      "headers": {
+        "Authorization": "Bearer ${APIFY_TOKEN}"
+      }
+    }
+  },
+  "settings": [
+    {
+      "name": "Apify API token",
+      "envVar": "APIFY_TOKEN",
+      "sensitive": true,
+      "description": "From Apify Console, Settings, API & Integrations. Runs bill to this account."
+    }
+  ]
+}

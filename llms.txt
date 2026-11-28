@@ -1,4 +1,4 @@
-# Cornerstone Jobs Scraper & API - All CSOD Career Sites, Remote
+# Cornerstone Jobs Scraper & API - CSOD ATS Career Sites, Remote
 
 > Cornerstone jobs scraper and API for every company on csod.com, searched live by job title, location, remote and posting date, newest first.
 
